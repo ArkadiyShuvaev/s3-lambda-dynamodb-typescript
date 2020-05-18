@@ -1,0 +1,29 @@
+{
+  "name": "s3-lambda-dynamodb",
+  "version": "0.0.1",
+  "description": "A test project for AWS learning",
+  "main": "my-app/app.js",
+  "scripts": {
+    "build": "tsc",
+    "sam:validate": "sam validate",
+    "aws:create-s3-bucket": "aws s3 mb s3://s3-lambda-dynamodb-code --region eu-central-1",
+    "sam:build": "sam build",
+    "sam:deploy": "sam deploy --stack-name s3-lambda-dynamodb --region eu-central-1 --s3-bucket s3-lambda-dynamodb-code --capabilities CAPABILITY_IAM",
+    "deploy": "npm run build && npm run sam:validate && npm install --production && npm run sam:build && npm run sam:deploy"
+  },
+  "keywords": [
+    "aws",
+    "lambda",
+    "s3",
+    "dynamodb"
+  ],
+  "author": "Arkadiy Shuvaev",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.51"
+  },
+  "optionalDependencies": {
+    "aws-sdk": "^2.678.0"
+  }
+}
