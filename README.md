@@ -1,8 +1,6 @@
 # s3-lambda-dynamodb
 
-This project contains source code and supporting files for a serverless application that you can deploy with the SAM CLI. It includes the following files and folders.
-
-The application uses several AWS resources, including Lambda functions, DynamoDb and S3. These resources are defined in the `template.yaml` file in this project. You can update the template to add AWS resources through the same deployment process that updates your application code.
+A test project for learning AWS. The project is an extended version of an example with adding TypeScript.
 
 ## Deploy the sample application
 
