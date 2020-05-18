@@ -20,7 +20,7 @@ npm install
 ```
 * Transpile to JavaScript:
 ```bash
-cd ../my-app
+cd ../
 tsc
 ```
 * Validate and build:
