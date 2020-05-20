@@ -17,13 +17,29 @@ Resources:
         S3Event:
           Type: S3
           Properties:
-            Bucket: !Ref s3LambdaDynamoBucket  # This must be the name of an S3 bucket declared in the same template file
+            Bucket: !Ref S3LambdaDynamoBucket  # This must be the name of an S3 bucket declared in the same template file
             Events: s3:ObjectCreated:*
+      Policies:
+        DynamoDBCrudPolicy:
+          TableName: !Ref S3UploadedFiles
 
   #Declare an S3 bucket to be created
-  s3LambdaDynamoBucket:
+  S3LambdaDynamoBucket:
     Type: AWS::S3::Bucket
+    Properties:
+      BucketName: s3lambdadynamobucket
 
+  #Declare DynamoDb table
+  S3UploadedFiles:
+    Type: AWS::Serverless::SimpleTable
+    Properties:
+      PrimaryKey:
+        Name: id
+        Type: String
+      TableName: S3UploadedFiles
+      ProvisionedThroughput:
+        ReadCapacityUnits: 1
+        WriteCapacityUnits: 1
 
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
@@ -35,3 +51,9 @@ Outputs:
   S3HandlerIamRole:
     Description: "Implicit IAM Role created for S3-Lambda-DynamoDb"
     Value: !GetAtt S3HandlerRole.Arn
+  S3UploadedFiles:
+    Description: "Implicit DynamoDb table created for S3-Lambda-DynamoDb"
+    Value: !GetAtt S3UploadedFiles.Arn
+  S3LambdaDynamoBucket
+    Description: "Implicit S3 bucket for S3-Lambda-DynamoDb"
+    Value: !GetAtt S3LambdaDynamoBucket.Arn
