@@ -2,6 +2,9 @@
 
 A test project for learning AWS. The project is an extended version of an example with adding TypeScript.
 
+The function adds information to DynamoDb table about all files are uploaded to S3:
+![Event Flow](https://github.com/ArkadiyShuvaev/s3-lambda-dynamodb-typescript/blob/master/s3-lambda-dynamodb.png)
+
 ## Deploy the sample application
 
 The Serverless Application Model Command Line Interface (SAM CLI) is an extension of the AWS CLI that adds functionality for building and testing Lambda applications. It uses Docker to run your functions in an Amazon Linux environment that matches Lambda. It can also emulate your application's build environment and API.
@@ -40,6 +43,8 @@ sam deploy --stack-name s3-lambda-dynamodb --region eu-central-1 --s3-bucket s3-
 ## Cleanup
 To delete the sample application that you created, use the AWS CLI. Assuming you used your project name for the stack name, you can run the following:
 
+* Delete all files from the "s3lambdadynamobucket" bucket first. Otherwise, AWS CloudFormation will not be able to remove the not-empty bucket
+* Remove an AWS CloudFormation stack:
 ```bash
 aws cloudformation delete-stack --stack-name s3-lambda-dynamodb
 ```
