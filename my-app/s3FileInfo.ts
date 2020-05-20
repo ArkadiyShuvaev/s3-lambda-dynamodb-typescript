@@ -2,6 +2,7 @@ import AWS, { DynamoDB } from "aws-sdk";
 
 export default class S3FileInfo {
 
+    private _customEpoch = 1500000000000; // artificial epoch
 
     /**
      * Creates an instance of the S3FileInfo.
@@ -12,10 +13,12 @@ export default class S3FileInfo {
 
     save(): void {
         const ddb = new AWS.DynamoDB({apiVersion: "2012-08-10"});
+
+        var newPrimaryKey = `${this.id}:${this.generateRowId()}`;
         const itemInput: DynamoDB.PutItemInput = {
             TableName: "S3UploadedFiles",
             Item: {
-                "id": {S: this.id},
+                "id": {S: newPrimaryKey},
                 "s3TimeStamp": {S: this.timestamp}
             }
         };
@@ -23,9 +26,11 @@ export default class S3FileInfo {
         ddb.putItem(itemInput, (err, data) => {
             if (err) {
                 console.error(err);
-            } else {
-                console.log(data);
             }
         });
+    }
+
+    private generateRowId() {
+        var ts = new Date().getTime() - this._customEpoch;
     }
 }
