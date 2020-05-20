@@ -1,8 +1,7 @@
-# s3-lambda-dynamodb
+# Audit S3 file upload actions
 
-A test project for learning AWS. The project is an extended version of an example with adding TypeScript.
+Creates audit records to DynamoDb table regarding all files are uploaded to S3
 
-The function adds information to DynamoDb table about all files are uploaded to S3:
 ![Event Flow](https://github.com/ArkadiyShuvaev/s3-lambda-dynamodb-typescript/blob/master/s3-lambda-dynamodb.png)
 
 ## Deploy the sample application
