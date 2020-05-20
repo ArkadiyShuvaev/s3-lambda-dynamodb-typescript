@@ -48,12 +48,15 @@ Outputs:
   S3Handler:
     Description: "S3-Lambda-DynamoDb Lambda Function ARN"
     Value: !GetAtt S3Handler.Arn
+
   S3HandlerIamRole:
     Description: "Implicit IAM Role created for S3-Lambda-DynamoDb"
     Value: !GetAtt S3HandlerRole.Arn
+
   S3UploadedFiles:
     Description: "Implicit DynamoDb table created for S3-Lambda-DynamoDb"
     Value: !GetAtt S3UploadedFiles.Arn
-  S3LambdaDynamoBucket
+
+  S3LambdaDynamoBucket:
     Description: "Implicit S3 bucket for S3-Lambda-DynamoDb"
     Value: !GetAtt S3LambdaDynamoBucket.Arn
