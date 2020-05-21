@@ -13,6 +13,8 @@ Resources:
       Handler: app.s3Handler
       Runtime: nodejs12.x
       MemorySize: 128
+      AutoPublishAlias: development
+      FunctionName: s3-audit
       Events:
         S3Event:
           Type: S3
