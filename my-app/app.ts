@@ -1,5 +1,3 @@
-// import {Handler} from 'aws-lambda';
-// import * as AwsLambda from "aws-lambda";
 import { Context, S3Event, Callback } from "aws-lambda";
 import S3FileInfo from "./s3FileInfo";
 
