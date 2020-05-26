@@ -8,7 +8,11 @@ export function s3Handler(event: S3Event, context: Context, callback: Callback):
     const s3ObjTime = event.Records[0].eventTime;
 
     const s3FileInfo = new S3FileInfo(s3ObjKey, s3ObjTime);
-    s3FileInfo.save();
+    try {
+        s3FileInfo.save();
+    } catch (err) {
+        console.error(err);
+    }
 
     callback();
 }
