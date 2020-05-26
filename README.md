@@ -4,7 +4,7 @@ Creates audit records to DynamoDb table regarding all files are uploaded to S3
 
 ![Event Flow](https://github.com/ArkadiyShuvaev/s3-lambda-dynamodb-typescript/blob/master/s3-lambda-dynamodb.png)
 
-## In the comparison with the learning example this project supports:
+## In comparison with the learning example this project supports:
 
 1. Typescript support
 2. An environment variable of the DynamoDb table name is deployed through the template [template.yaml](https://github.com/ArkadiyShuvaev/s3-lambda-dynamodb-typescript/blob/master/template.yaml)
