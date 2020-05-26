@@ -2,6 +2,7 @@ import AWS, { DynamoDB } from "aws-sdk";
 
 export default class S3FileInfo {
 
+    tableName: string;
     private _customEpoch = 1500000000000; // artificial epoch
 
     /**
@@ -9,6 +10,14 @@ export default class S3FileInfo {
      */
     constructor(private id: string, private timestamp: string) {
         AWS.config.update({region: "eu-central-1"});
+
+        const tableName = process.env.DATABASE_NAME;
+        if (typeof tableName === "undefined") {
+            throw new Error("table name");
+        }
+
+        this.tableName = tableName;
+
     }
 
     save(): void {
@@ -16,7 +25,7 @@ export default class S3FileInfo {
 
         var newPrimaryKey = `${this.id}:${this.generateRowId()}`;
         const itemInput: DynamoDB.PutItemInput = {
-            TableName: "S3UploadedFiles",
+            TableName: this.tableName,
             Item: {
                 "id": {S: newPrimaryKey},
                 "s3TimeStamp": {S: this.timestamp}

@@ -4,6 +4,10 @@ Description: s3-lambda-dynamodb
 Globals:
   Function:
     Timeout: 3
+Parameters:
+  DatabaseName:
+    Type: String
+    Default: S3UploadedFiles
 
 Resources:
   S3Handler:
@@ -24,6 +28,9 @@ Resources:
       Policies:
         DynamoDBCrudPolicy:
           TableName: !Ref S3UploadedFiles
+      Environment:
+        Variables:
+          DATABASE_NAME: !Ref DatabaseName
 
   #Declare an S3 bucket to be created
   S3LambdaDynamoBucket:
